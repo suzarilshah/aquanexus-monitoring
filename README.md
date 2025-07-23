@@ -1,79 +1,299 @@
-# AquaNexus - Smart Aquaponics Monitoring System
+# AquaNexus Monitoring System
 
-AquaNexus is a comprehensive IoT platform for monitoring and managing aquaponics systems. It combines real-time sensor data collection, intelligent analytics, and user-friendly dashboards to help aquaponics enthusiasts and professionals optimize their systems.
-
-## Architecture
-
-AquaNexus uses a modern architecture with the following components:
-
-- **Frontend**: React with TypeScript, Vite, and TailwindCSS
-- **Backend**: Appwrite Cloud for authentication, database, storage, and serverless functions
-- **Database**: MongoDB Atlas for scalable data storage
-- **AI Processing**: Azure AI for insights and predictions
-- **IoT Integration**: ESP32-based sensor nodes for data collection
-
-## Backend Functions
-
-The system uses Appwrite Edge Functions to handle server-side operations:
-
-1. **process-data-import**: Processes CSV or JSON data uploads and stores them in MongoDB
-2. **ai-insights**: Analyzes sensor data using Azure AI to generate insights and recommendations
-3. **create-demo-account**: Creates a demo account with pre-populated sample data
-4. **register-device**: Handles ESP32 device registration and onboarding
-5. **ingest-sensor-data**: Processes incoming sensor data from IoT devices
-
-## Setup Instructions
-
-### Prerequisites
-
-- Node.js 16+ and npm
-- Appwrite Cloud account
-- MongoDB Atlas account
-- Azure AI account (for AI insights)
-
-### Environment Variables
-
-Create a `.env` file in the root directory with the following variables:
-
-```
-# Appwrite Configuration
-VITE_APPWRITE_ENDPOINT=https://syd.cloud.appwrite.io/v1
-VITE_APPWRITE_PROJECT_ID=your_project_id
-VITE_APPWRITE_DATABASE_ID=main
-VITE_APPWRITE_API_KEY=your_api_key
-
-# MongoDB Configuration
-VITE_MONGODB_CONNECTION_STRING=your_mongodb_connection_string
-
-# Azure AI Configuration
-VITE_AZURE_AI_ENDPOINT=your_azure_ai_endpoint
-VITE_AZURE_AI_KEY=your_azure_ai_key
-```
-
-### Installation
-
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Start the development server: `npm run dev`
-
-### Deploying Functions
-
-To deploy the Appwrite Edge Functions:
-
-1. Install Appwrite CLI: `npm install -g appwrite-cli`
-2. Login to Appwrite: `appwrite login`
-3. Navigate to each function directory and deploy: `appwrite deploy function`
+A comprehensive IoT monitoring and management system for aquaponics environments, featuring real-time data visualization, AI-powered insights, and ESP32 device integration.
 
 ## Features
 
-- Real-time monitoring of water quality parameters (pH, temperature, dissolved oxygen, etc.)
-- Plant growth tracking and analysis
-- Fish health monitoring
-- AI-powered insights and recommendations
-- Anomaly detection and alerts
-- Historical data visualization and trends
-- Mobile-responsive design for monitoring on the go
+### 🐟 Fish Environment Monitoring
+- Real-time water quality tracking (temperature, pH, dissolved oxygen)
+- Nitrogen cycle monitoring (ammonia, nitrite, nitrate)
+- Fish health indicators and feeding optimization
+- Automated alert system for critical parameters
+
+### 🌱 Plant Environment Control
+- Growing condition monitoring (temperature, humidity, light)
+- Nutrient solution management (pH, EC, NPK levels)
+- Growth stage tracking and optimization
+- Automated irrigation and lighting control
+
+### 🧠 AI-Powered Analysis
+- Predictive analytics for system optimization
+- Intelligent recommendations for parameter adjustments
+- Performance trend analysis and forecasting
+- Energy efficiency optimization suggestions
+
+### 📊 Data Management
+- Historical data visualization with interactive charts
+- CSV/JSON/Excel data import capabilities
+- Real-time WebSocket data streaming
+- Comprehensive reporting and export features
+
+### 🔧 ESP32 Integration
+- Seamless device onboarding and management
+- Real-time sensor data collection
+- Remote device monitoring and control
+- Automatic device discovery and configuration
+
+## Technology Stack
+
+- **Frontend**: React 18 + TypeScript + Vite
+- **UI Components**: Tailwind CSS + Radix UI
+- **State Management**: Zustand
+- **Charts**: Recharts
+- **Backend**: Appwrite (BaaS)
+- **Real-time**: WebSocket connections
+- **IoT**: ESP32 microcontrollers
+- **Icons**: Lucide React
+
+## Quick Start
+
+### Prerequisites
+
+- Node.js 18+ and npm
+- Appwrite server instance
+- ESP32 devices (optional, for hardware integration)
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/suzarilshah/aquanexus-monitoring.git
+   cd aquanexus-monitoring
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Environment Configuration**
+   
+   Create a `.env` file in the root directory:
+   ```env
+   VITE_APPWRITE_ENDPOINT=https://your-appwrite-endpoint
+   VITE_APPWRITE_PROJECT_ID=your-project-id
+   VITE_WEBSOCKET_URL=ws://localhost:8080
+   ```
+
+4. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Access the application**
+   
+   Open [http://localhost:5173](http://localhost:5173) in your browser
+
+### Demo Account
+
+For quick testing, use the demo login feature:
+- Click "Try Demo Account" on the login page
+- Explore all features with pre-loaded sample data
+
+## Project Structure
+
+```
+src/
+├── components/          # Reusable UI components
+│   ├── auth/           # Authentication forms
+│   └── ui/             # Base UI components
+├── hooks/              # Custom React hooks
+├── lib/                # Utility libraries and API clients
+├── pages/              # Main application pages
+├── store/              # Zustand state management
+└── assets/             # Static assets
+```
+
+## Key Components
+
+### Dashboard
+- System overview with key metrics
+- Real-time alerts and notifications
+- Device status monitoring
+- Quick action buttons
+
+### Fish Environment
+- Water quality parameter tracking
+- Fish health indicators
+- Feeding schedule optimization
+- Environmental alerts
+
+### Plant Environment
+- Growing condition monitoring
+- Nutrient solution management
+- Growth stage tracking
+- Climate control systems
+
+### AI Analysis
+- Predictive analytics dashboard
+- System optimization recommendations
+- Performance trend analysis
+- Confidence-based insights
+
+### Data Import
+- File upload interface (CSV, JSON, Excel)
+- Data validation and mapping
+- Historical data integration
+- Import statistics and management
+
+## ESP32 Integration
+
+### Device Setup
+
+1. **Flash ESP32 firmware** with AquaNexus sensor code
+2. **Configure WiFi credentials** through the web interface
+3. **Register device** in the monitoring system
+4. **Calibrate sensors** using the built-in calibration tools
+
+### Supported Sensors
+
+- **Water Quality**: pH, temperature, dissolved oxygen, turbidity
+- **Environmental**: Air temperature, humidity, light intensity
+- **System**: Flow rate, water level, pump status
+- **Power**: Battery level, power consumption
+
+## API Integration
+
+### Appwrite Configuration
+
+1. **Create Appwrite project**
+2. **Set up authentication** (email/password)
+3. **Configure databases** for sensor data and user management
+4. **Deploy cloud functions** for data processing
+
+### WebSocket Server
+
+Real-time data streaming requires a WebSocket server:
+
+```javascript
+// Basic WebSocket server setup
+const WebSocket = require('ws');
+const wss = new WebSocket.Server({ port: 8080 });
+
+wss.on('connection', (ws) => {
+  // Handle ESP32 connections
+  ws.on('message', (data) => {
+    // Process sensor data
+    broadcastToClients(data);
+  });
+});
+```
+
+## Development
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+### Code Style
+
+- **TypeScript** for type safety
+- **ESLint** for code quality
+- **Prettier** for code formatting
+- **Tailwind CSS** for styling
+
+### Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## Deployment
+
+### Production Build
+
+```bash
+npm run build
+```
+
+### Deployment Options
+
+- **Vercel**: Connect GitHub repository for automatic deployments
+- **Netlify**: Drag and drop `dist` folder
+- **Docker**: Use provided Dockerfile
+- **Traditional hosting**: Upload `dist` folder contents
+
+### Environment Variables
+
+Ensure these are set in your production environment:
+
+```env
+VITE_APPWRITE_ENDPOINT=https://your-production-appwrite
+VITE_APPWRITE_PROJECT_ID=your-production-project-id
+VITE_WEBSOCKET_URL=wss://your-websocket-server
+```
+
+## Monitoring & Analytics
+
+### System Health
+- Real-time device status monitoring
+- Performance metrics tracking
+- Error logging and alerting
+- Uptime monitoring
+
+### Data Analytics
+- Historical trend analysis
+- Predictive modeling
+- Performance optimization
+- Custom reporting
+
+## Security
+
+### Authentication
+- Secure user registration and login
+- JWT token-based authentication
+- Session management
+- Password reset functionality
+
+### Data Protection
+- Encrypted data transmission
+- Secure API endpoints
+- Input validation and sanitization
+- CORS configuration
+
+## Troubleshooting
+
+### Common Issues
+
+1. **WebSocket connection failed**
+   - Check WebSocket server is running
+   - Verify VITE_WEBSOCKET_URL is correct
+   - Check firewall settings
+
+2. **Appwrite connection error**
+   - Verify Appwrite endpoint and project ID
+   - Check network connectivity
+   - Ensure proper CORS settings
+
+3. **ESP32 not connecting**
+   - Check WiFi credentials
+   - Verify device firmware
+   - Check sensor connections
+
+### Support
+
+For technical support or questions:
+- Create an issue on GitHub
+- Check the documentation
+- Review existing issues and discussions
 
 ## License
 
-MIT
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- React and Vite teams for excellent development tools
+- Appwrite for backend-as-a-service platform
+- Tailwind CSS for utility-first styling
+- Recharts for beautiful data visualization
+- Lucide for comprehensive icon library
+
+---
+
+**AquaNexus Monitoring System** - Revolutionizing aquaponics through intelligent IoT monitoring and AI-powered insights.
